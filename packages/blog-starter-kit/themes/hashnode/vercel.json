@@ -1,6 +1,5 @@
 {
     "framework": "nextjs",
-    "nodeVersion": "22.x",
     "buildCommand": "cd ../../../ && npx turbo run build --filter=hashnode",
     "installCommand": "pnpm install",
     "devCommand": "cd ../../../ && pnpm dev --filter=hashnode"
