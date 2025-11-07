@@ -1,6 +1,6 @@
 {
     "framework": "nextjs",
-    "buildCommand": "cd ../../../ && npx turbo run build --filter=hashnode",
+    "buildCommand": "cd ../../../ && npx turbo run build --filter=@starter-kit/blog-hashnode",
     "installCommand": "pnpm install",
-    "devCommand": "cd ../../../ && pnpm dev --filter=hashnode"
+    "devCommand": "cd ../../../ && pnpm dev --filter=@starter-kit/blog-hashnode"
 }
