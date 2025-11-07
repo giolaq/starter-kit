@@ -5,6 +5,7 @@
 	"keywords": [],
 	"license": "MIT",
 	"author": "",
+	"packageManager": "pnpm@8.15.0",
 	"scripts": {
 		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,json}\"",
 		"preinstall": "npx only-allow pnpm"
