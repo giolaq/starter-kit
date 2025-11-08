@@ -19,11 +19,11 @@ export const Header = (props: Props) => {
 
 	return (
 		<header
-			className="blog-header relative z-50 w-full border-b border-black/10 bg-white bg-opacity-70 dark:border-white/10 dark:bg-slate-900 dark:bg-opacity-70"
+			className="blog-header sticky top-0 z-50 w-full border-b border-slate-200/60 bg-white/80 shadow-sm backdrop-blur-xl transition-all duration-300 dark:border-slate-700/60 dark:bg-slate-900/80"
 		>
-			<div className="container mx-auto px-2 md:px-4 2xl:px-10">
-				<div className="relative z-40 flex flex-row items-center justify-between pb-2 pt-8 md:mb-4">
-					<div className="flex flex-row items-center py-1">
+			<div className="container mx-auto px-4 md:px-6 2xl:px-12">
+				<div className="relative z-40 flex flex-row items-center justify-between py-4 md:py-5">
+					<div className="flex flex-row items-center gap-4">
 						{/* Navigation for mobile view */}
 						<div
 							className={twJoin(
@@ -39,28 +39,33 @@ export const Header = (props: Props) => {
 
 					<div
 						className={twJoin(
-							'flex flex-row items-center','dark:text-white',
+							'flex flex-row items-center gap-3','dark:text-white',
 						)}
 					>
 						<HeaderBlogSearch publication={publication} />
-						<Button as="a" href="#" type="primary" label="Sign up" />
+						<Button
+							as="a"
+							href="#"
+							type="primary"
+							label="Sign up"
+						/>
 					</div>
 				</div>
 
 				{/* Logo for mobile view */}
-				<div className="mx-auto my-5 flex w-2/3 flex-row items-center justify-center md:hidden">
+				<div className="mx-auto mb-6 mt-2 flex w-2/3 flex-row items-center justify-center md:hidden">
 					<PublicationLogo publication={publication} size="xl" />
 				</div>
 
-				<div className="blog-sub-header" data-testid="blog-sub-header">
+				<div className="blog-sub-header animate-fade-in" data-testid="blog-sub-header">
 					{/* Desktop */}
-					<div className="justify-betweem mx-0 mb-2 hidden w-full flex-row items-center md:flex">
+					<div className="mx-0 mb-3 hidden w-full flex-row items-center justify-center md:flex">
 						<PublicationSocialLinks
 							links={publication.links}
 						/>
 					</div>
 					{/* Mobile view */}
-					<div className="mb-2 flex w-full flex-col items-center md:hidden">
+					<div className="mb-4 flex w-full flex-col items-center md:hidden">
 						<PublicationSocialLinks
 							links={publication.links}
 						/>
@@ -68,8 +73,7 @@ export const Header = (props: Props) => {
 				</div>
 
 				<div
-					className="relative mt-8 hidden flex-row items-center justify-center overflow-hidden text-base md:flex"
-					data-tom="hidden md:flex relative flex-row items-center justify-center overflow-hidden text-base mt-8"
+					className="relative mb-2 hidden flex-row items-center justify-center overflow-hidden text-base md:flex"
 				>
 					<PublicationNavLinks
 						isHome={isHome}

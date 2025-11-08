@@ -5,6 +5,7 @@
 	"keywords": [],
 	"license": "MIT",
 	"author": "",
+	"packageManager": "pnpm@8.15.0",
 	"scripts": {
 		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,md,json}\"",
 		"preinstall": "npx only-allow pnpm"
@@ -27,7 +28,12 @@
 		"typescript": "^5.2.2"
 	},
 	"engines": {
-		"node": ">=18.0.0",
+		"node": ">=22.0.0",
 		"pnpm": ">=8.0.0"
+	},
+	"pnpm": {
+		"overrides": {
+			"@urql/core": "~4.3.0"
+		}
 	}
 }

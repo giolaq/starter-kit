@@ -8,11 +8,11 @@ import { AppProvider } from '../../components/contexts/appContext';
 import { Header } from '../../components/header';
 import { Layout } from '../../components/layout';
 import {
-	Post,
 	PublicationFragment,
 	TagInitialDocument,
 	TagInitialQuery,
 } from '../../generated/graphql';
+import type { Post } from '../../generated/graphql';
 import ExternalLinkSVG from '../../components/icons/svgs/ExternalLinkSVG';
 import { createHeaders, createSSRExchange, getUrqlClientConfig } from '../../lib/api/client';
 import PublicationPosts from '../../components/publication-posts';

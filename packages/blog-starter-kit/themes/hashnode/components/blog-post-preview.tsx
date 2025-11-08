@@ -49,24 +49,27 @@ function BlogPostPreview(props: {
   }
 
   return (
-    <div
-      className={twJoin('blog-post-card mb-16', layout === 'grid' ? 'px-4 lg:w-1/2 lg:px-8' : 'px-4 lg:px-16')}
+    <article
+      className={twJoin(
+        'blog-post-card group mb-12 animate-fade-in',
+        layout === 'grid' ? 'px-4 lg:w-1/2 lg:px-6' : 'px-4 lg:px-16'
+      )}
       key={post.id}
     >
       {layout !== 'grid' && post.id === pinnedPostId && (
-        <div className="blog-article-card-label mb-1 flex flex-row items-center break-words font-heading font-medium leading-snug text-blue-600 dark:text-blue-500">
+        <div className="blog-article-card-label mb-3 flex flex-row items-center break-words font-heading font-semibold leading-snug text-brand-600 dark:text-brand-400">
           <span>Pinned</span>
-          <PinSVG className="ml-1 h-6 w-6 stroke-current" />
+          <PinSVG className="ml-1.5 h-5 w-5 stroke-current" />
         </div>
       )}
       <section
         className={twJoin(
-          'blog-post-card-wrapper flex flex-wrap items-start',
+          'blog-post-card-wrapper flex flex-wrap items-start overflow-hidden rounded-2xl border border-slate-200/60 bg-white p-6 shadow-sm transition-all duration-300 hover:border-brand-300/60 hover:shadow-lg dark:border-slate-700/60 dark:bg-slate-800/50 dark:hover:border-brand-700/60',
           layout === 'grid' ? 'flex-col-reverse' : 'flex-row',
         )}
       >
         <div className={layout === 'grid' ? 'w-full' : 'lg:w-3/5'}>
-          <h1 className="blog-post-card-title mb-3 break-words font-heading text-2xl font-bold leading-tight text-slate-900 dark:text-white lg:text-3xl">
+          <h1 className="blog-post-card-title mb-4 break-words font-heading text-2xl font-bold leading-tight text-slate-900 transition-colors group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-400 lg:text-3xl">
             <Link href={postURL} aria-label={post.title} onMouseOver={preload} onFocus={() => undefined}>
               {post.title}
             </Link>
@@ -81,28 +84,30 @@ function BlogPostPreview(props: {
               <div className="mb-4 flex w-full flex-row items-center">
                 <a
                   href={`https://hashnode.com/@${post.author.username}`}
-                  className="blog-post-card-author-pic mr-2 block h-8 w-8 overflow-hidden rounded-full bg-slate-100 dark:bg-slate-800"
+                  className="blog-post-card-author-pic mr-3 block h-10 w-10 overflow-hidden rounded-full bg-gradient-to-br from-brand-400 to-brand-600 p-0.5 transition-transform hover:scale-105"
                 >
-                  <Image
-                    alt={post.author.name}
-                    className="block w-full"
-                    width={72}
-                    height={72}
-                    src={resizeImage(post.author.profilePicture || DEFAULT_AVATAR, { w: 72, h: 72, c: 'face' })}
-                  />
+                  <div className="h-full w-full overflow-hidden rounded-full bg-white dark:bg-slate-800">
+                    <Image
+                      alt={post.author.name}
+                      className="block h-full w-full object-cover"
+                      width={72}
+                      height={72}
+                      src={resizeImage(post.author.profilePicture || DEFAULT_AVATAR, { w: 72, h: 72, c: 'face' })}
+                    />
+                  </div>
                 </a>
                 <a
                   href={`https://hashnode.com/@${post.author.username}`}
-                  className="blog-post-card-author-name text-lg font-medium text-slate-800 dark:text-slate-200"
+                  className="blog-post-card-author-name text-lg font-semibold text-slate-800 transition-colors hover:text-brand-600 dark:text-slate-200 dark:hover:text-brand-400"
                 >
                   {post.author.name}
                 </a>
               </div>
             )}
             {layout === 'grid' && post.id === pinnedPostId && (
-              <div className="blog-article-card-label mr-2 flex flex-row items-center break-words font-medium leading-snug text-blue-600 dark:text-blue-500">
+              <div className="blog-article-card-label mr-2 flex flex-row items-center break-words font-semibold leading-snug text-brand-600 dark:text-brand-400">
                 <span>Pinned</span>
-                <PinSVG className="ml-1 h-6 w-6 stroke-current" />
+                <PinSVG className="ml-1.5 h-5 w-5 stroke-current" />
               </div>
             )}
             <Link href={postURL} aria-label={post.title} className="blog-post-card-time mr-4">
@@ -121,7 +126,7 @@ function BlogPostPreview(props: {
               </Link>
             ) : null}
           </div>
-          <p className="blog-post-card-brief block w-full break-words text-lg leading-snug text-slate-700 hn-break-words dark:text-slate-400">
+          <p className="blog-post-card-brief block w-full break-words text-lg leading-relaxed text-slate-600 hn-break-words dark:text-slate-300">
             <Link href={postURL} aria-label={post.title} onMouseOver={preload} onFocus={() => undefined}>
               {postBrief}
             </Link>
@@ -135,35 +140,37 @@ function BlogPostPreview(props: {
         >
           <Link
             href={postURL}
-            className="block overflow-hidden rounded-lg border dark:border-slate-800"
+            className="group/image relative block overflow-hidden rounded-xl"
             aria-label={post.title}
             onMouseOver={preload}
             onFocus={() => undefined}
           >
-            <CustomImage
-              originalSrc={postCoverImageURL}
-              src={resizeImage(postCoverImageURL, {
-                w: 1600,
-                h: 840,
-                ...(!post.coverImage?.isPortrait ? { c: 'thumb' } : { fill: 'blur' }),
-              })}
-              width={1600}
-              height={840}
-              placeholder="blur"
-              blurDataURL={getBlurHash(
-                resizeImage(postCoverImageURL, {
-                  ...blurImageDimensions,
+            <div className="overflow-hidden rounded-xl transition-transform duration-300 group-hover/image:scale-105">
+              <CustomImage
+                originalSrc={postCoverImageURL}
+                src={resizeImage(postCoverImageURL, {
+                  w: 1600,
+                  h: 840,
                   ...(!post.coverImage?.isPortrait ? { c: 'thumb' } : { fill: 'blur' }),
-                }),
-              )}
-              alt={post.title}
-              layout="responsive"
-              className="post-cover"
-            />
+                })}
+                width={1600}
+                height={840}
+                placeholder="blur"
+                blurDataURL={getBlurHash(
+                  resizeImage(postCoverImageURL, {
+                    ...blurImageDimensions,
+                    ...(!post.coverImage?.isPortrait ? { c: 'thumb' } : { fill: 'blur' }),
+                  }),
+                )}
+                alt={post.title}
+                layout="responsive"
+                className="post-cover"
+              />
+            </div>
           </Link>
         </div>
       </section>
-    </div>
+    </article>
   );
 }
 
